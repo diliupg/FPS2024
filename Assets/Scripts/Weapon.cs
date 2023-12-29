@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -35,7 +35,13 @@ public class Weapon : MonoBehaviour
     [Header ("Set this for Auto Reload")]
     public bool autoReload;
     
+    public enum WeaponModel
+    {
+        Pistol,
+        Rifle
+    }
     
+    public WeaponModel currentWeaponModel;
     
 
      public enum ShootingMode
@@ -60,7 +66,8 @@ public class Weapon : MonoBehaviour
     {
         if(bulletsLeft == 0 && isShooting)
         {
-            SoundManager.Instance.Pistol_MagEmpty.Play();
+            //SoundManager.Instance.Pistol_MagEmpty.Play();
+            SoundManager.Instance.PlayEmptySound(currentWeaponModel);
         }
         if (currentShootingMode == ShootingMode.Auto)
         {
@@ -103,8 +110,9 @@ public class Weapon : MonoBehaviour
         muzzleEffect.GetComponent<ParticleSystem>().Play();
         animator.SetTrigger("Recoil");
 
-        SoundManager.Instance.Pistol_ShootingSound.Play();
-        
+        //SoundManager.Instance.Pistol_ShootingSound.Play();
+        SoundManager.Instance.PlayShootingSound(currentWeaponModel);
+
         readyToShoot = false;
 
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
@@ -139,7 +147,9 @@ public class Weapon : MonoBehaviour
 
     private void Reload()
     {
-        SoundManager.Instance.Pistol_Reload.Play();
+        SoundManager.Instance.PlayReloadSound(currentWeaponModel);
+
+        animator.SetTrigger("Reload");
 
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
