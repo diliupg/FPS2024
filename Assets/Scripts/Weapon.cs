@@ -35,6 +35,8 @@ public class Weapon : MonoBehaviour
     [Header ("Set this for Auto Reload")]
     public bool autoReload;
     
+    public Vector3 spawnPosition;
+    public Vector3 spawnRotation;
     public enum WeaponModel
     {
         Pistol,
