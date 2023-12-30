@@ -33,6 +33,11 @@ public class InteractionManager : MonoBehaviour
             {
                 selectedWeapon = objectHitByRaycast.gameObject.GetComponent<Weapon>();
                 selectedWeapon.GetComponent<Outline>().enabled = true;
+
+                if(Input.GetKeyDown(KeyCode.E))
+                {
+                    WeaponManager.Instance.PickupWeapon(objectHitByRaycast.gameObject);
+                }
             }
             else
             {
