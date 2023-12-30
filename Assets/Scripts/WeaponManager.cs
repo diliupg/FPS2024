@@ -47,6 +47,8 @@ public class WeaponManager : MonoBehaviour
 
     private void AddWeaponIntoActiveSlot(GameObject pickedupWeapon)
     {
+        DropCurrentWeapon(pickedupWeapon);
+
         pickedupWeapon.transform.SetParent(activeWeaponSlot.transform, false);
 
         Weapon weapon = pickedupWeapon.GetComponent<Weapon>();
@@ -55,5 +57,24 @@ public class WeaponManager : MonoBehaviour
         pickedupWeapon.transform.localRotation = Quaternion.Euler(weapon.spawnRotation.x, weapon.spawnRotation.y, weapon.spawnRotation.z);
 
         weapon.isActiveWeapon = true;
+    }
+
+    private void DropCurrentWeapon(GameObject pickedupWeapon)
+    {
+        if(activeWeaponSlot.transform.childCount > 0)
+        {
+            var weaponToDrop = activeWeaponSlot.transform.GetChild(0).gameObject;
+
+            weaponToDrop.GetComponent<Weapon>().isActiveWeapon = false;
+
+            weaponToDrop.transform.SetParent(pickedupWeapon.transform.parent);
+            weaponToDrop.transform.localPosition = pickedupWeapon.transform.localPosition;
+            weaponToDrop.transform.localRotation = pickedupWeapon.transform.localRotation;
+        }
+    }
+
+    public void SwitchActiveSlot(int slotNumber)
+    {
+        
     }
 }
