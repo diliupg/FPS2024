@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public bool isActiveWeapon;
 
      // shooting
      public bool isShooting, readyToShoot;
@@ -66,43 +67,47 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if(bulletsLeft == 0 && isShooting)
+        if (isActiveWeapon)
         {
-            //SoundManager.Instance.Pistol_MagEmpty.Play();
-            SoundManager.Instance.PlayEmptySound(currentWeaponModel);
-        }
-        if (currentShootingMode == ShootingMode.Auto)
-        {
-            // holding down Left Mouse Button
-            isShooting = Input.GetKey(KeyCode.Mouse0);
-        }
-        else if (currentShootingMode == ShootingMode.Single ||
-                currentShootingMode == ShootingMode.Burst)
-        {
-            isShooting = Input.GetKeyDown(KeyCode.Mouse0);  
+            if (bulletsLeft == 0 && isShooting)
+            {
+                //SoundManager.Instance.Pistol_MagEmpty.Play();
+                SoundManager.Instance.PlayEmptySound(currentWeaponModel);
+            }
+            if (currentShootingMode == ShootingMode.Auto)
+            {
+                // holding down Left Mouse Button
+                isShooting = Input.GetKey(KeyCode.Mouse0);
+            }
+            else if (currentShootingMode == ShootingMode.Single ||
+                    currentShootingMode == ShootingMode.Burst)
+            {
+                isShooting = Input.GetKeyDown(KeyCode.Mouse0);
+            }
+
+            if (readyToShoot && isShooting && bulletsLeft > 0)
+            {
+                burstBulletsLeft = bulletsPerBurst;
+                FireWeapon();
+            }
+
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading)
+            {
+                Reload();
+            }
+
+            // auto Reload if the autoReload bool is set
+            if (autoReload && !isShooting && !isReloading && bulletsLeft >= 0)
+            {
+                Reload();
+            }
+
+            if (AmmoManager.Instance.ammoDisplay != null)
+            {
+                AmmoManager.Instance.ammoDisplay.text = $"{bulletsLeft / bulletsPerBurst}/{magazineSize / bulletsPerBurst}";
+            }
         }
 
-        if(readyToShoot && isShooting && bulletsLeft > 0)
-        {
-            burstBulletsLeft = bulletsPerBurst;
-            FireWeapon();
-        }
-
-        if(Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading)
-        {
-            Reload();
-        }
-
-        // auto Reload if the autoReload bool is set
-        if (autoReload && !isShooting && !isReloading && bulletsLeft >= 0)
-        {
-            Reload();
-        }
-        
-        if (AmmoManager.Instance.ammoDisplay != null)
-        {
-            AmmoManager.Instance.ammoDisplay.text = $"{bulletsLeft/bulletsPerBurst}/{magazineSize/bulletsPerBurst}";
-        }
     }
 
     private void FireWeapon()
