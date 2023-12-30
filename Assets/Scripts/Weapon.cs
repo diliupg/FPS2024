@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
     public float bulletLifetime = 3f;
 
     public GameObject muzzleEffect;
-    private Animator animator;
+    internal Animator animator; // internal - other scripts can access it but not from the inspector
 
     // loading
     public float reloadTime;
@@ -38,6 +38,7 @@ public class Weapon : MonoBehaviour
     
     public Vector3 spawnPosition;
     public Vector3 spawnRotation;
+
     public enum WeaponModel
     {
         Pistol,
@@ -69,6 +70,8 @@ public class Weapon : MonoBehaviour
     {
         if (isActiveWeapon)
         {
+            //GetComponent<Outline>().enabled = false;
+            
             if (bulletsLeft == 0 && isShooting)
             {
                 //SoundManager.Instance.Pistol_MagEmpty.Play();
@@ -90,7 +93,7 @@ public class Weapon : MonoBehaviour
                 burstBulletsLeft = bulletsPerBurst;
                 FireWeapon();
             }
-
+            // Manual Reload
             if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading)
             {
                 Reload();

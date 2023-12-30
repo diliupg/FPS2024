@@ -1511,6 +1511,7 @@ MonoBehaviour:
   weaponSlots:
   - {fileID: 1293889463}
   - {fileID: 318454170}
+  activeWeaponSlot: {fileID: 0}
 --- !u!1001 &887791832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3355,6 +3356,10 @@ PrefabInstance:
       propertyPath: isReloading
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5664951527766214193, guid: 6c2398a2c49d988489e1361d5ae8f49a, type: 3}
+      propertyPath: spawnRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9079797452918241998, guid: 6c2398a2c49d988489e1361d5ae8f49a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.3
@@ -3373,11 +3378,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9079797452918241998, guid: 6c2398a2c49d988489e1361d5ae8f49a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9079797452918241998, guid: 6c2398a2c49d988489e1361d5ae8f49a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9079797452918241998, guid: 6c2398a2c49d988489e1361d5ae8f49a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -3426,11 +3431,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829137713139526429, guid: 7b77b9215942fe7489fc10641487b7fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.57
+      value: 1.532
       objectReference: {fileID: 0}
     - target: {fileID: 829137713139526429, guid: 7b77b9215942fe7489fc10641487b7fe, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.9
+      value: 8.791
       objectReference: {fileID: 0}
     - target: {fileID: 829137713139526429, guid: 7b77b9215942fe7489fc10641487b7fe, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3438,11 +3443,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829137713139526429, guid: 7b77b9215942fe7489fc10641487b7fe, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 829137713139526429, guid: 7b77b9215942fe7489fc10641487b7fe, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 829137713139526429, guid: 7b77b9215942fe7489fc10641487b7fe, type: 3}
       propertyPath: m_LocalRotation.z
@@ -3467,6 +3472,14 @@ PrefabInstance:
     - target: {fileID: 4426881821715398708, guid: 7b77b9215942fe7489fc10641487b7fe, type: 3}
       propertyPath: m_Name
       value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699930051901259095, guid: 7b77b9215942fe7489fc10641487b7fe, type: 3}
+      propertyPath: Outliner
+      value: 
+      objectReference: {fileID: 7185351605638197479}
+    - target: {fileID: 6699930051901259095, guid: 7b77b9215942fe7489fc10641487b7fe, type: 3}
+      propertyPath: spawnRotation.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

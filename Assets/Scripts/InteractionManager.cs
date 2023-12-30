@@ -29,7 +29,8 @@ public class InteractionManager : MonoBehaviour
         {
             GameObject objectHitByRaycast = hit.transform.gameObject;
 
-            if(objectHitByRaycast.GetComponent<Weapon>())
+            if(objectHitByRaycast.GetComponent<Weapon>() &&
+                objectHitByRaycast.GetComponent<Weapon>().isActiveWeapon == false)
             {
                 selectedWeapon = objectHitByRaycast.gameObject.GetComponent<Weapon>();
                 selectedWeapon.GetComponent<Outline>().enabled = true;
