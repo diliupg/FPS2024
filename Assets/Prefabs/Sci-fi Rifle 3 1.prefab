@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5988264866779061569}
   - component: {fileID: 7815422576283155027}
   - component: {fileID: 6577662467775952983}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sci_fi_Rifle_3_Dangler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2515667625853780588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BulletSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 2140103626091150270}
   - component: {fileID: 5664951527766214193}
   - component: {fileID: 9124136698308778074}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sci-fi Rifle 3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770d535f5a3477944a09ffc3c4e5681f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActiveWeapon: 0
   isShooting: 0
   readyToShoot: 0
   shootingDelay: 0.1
@@ -239,7 +240,7 @@ GameObject:
   - component: {fileID: 4599981771225816967}
   - component: {fileID: 1106987206101693429}
   - component: {fileID: 4185357120661570306}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sci_fi_Rilfe_3_pt1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +323,7 @@ GameObject:
   - component: {fileID: 7008158851926487422}
   - component: {fileID: 8225076001063500669}
   - component: {fileID: 220490160061794879}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MuzzleFlashEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5105,7 +5106,7 @@ GameObject:
   - component: {fileID: 8868299730067369579}
   - component: {fileID: 5937291016077959327}
   - component: {fileID: 4193031401785879043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sci_fi_Rilfe_3_pt0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5188,7 +5189,7 @@ GameObject:
   - component: {fileID: 6918835779060678185}
   - component: {fileID: 9174332920932928872}
   - component: {fileID: 6233918683052074252}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sci_fi_Rifle_3_Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
