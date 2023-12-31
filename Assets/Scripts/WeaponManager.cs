@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -10,6 +9,9 @@ public class WeaponManager : MonoBehaviour
     public List<GameObject> weaponSlots;
     public GameObject activeWeaponSlot;
 
+    [Header ("Ammo")]
+    public int totalRifleAmmo = 0;
+    public int totalPistolAmmo = 0;
     private void Awake()
     {
         if(Instance != null && Instance != this)
@@ -39,7 +41,7 @@ public class WeaponManager : MonoBehaviour
                 weaponSlot.SetActive(false);
             }
         }
-
+        // Manually Switch Weapon
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             SwitchActiveSlot(0);
@@ -54,6 +56,18 @@ public class WeaponManager : MonoBehaviour
         AddWeaponIntoActiveSlot(pickedUpWeapon);
     }
 
+    internal void PickupAmmo(AmmoBox ammo)
+    {
+        switch (ammo.ammoType)
+        {
+            case AmmoBox.AmmoType.PistolAmmo:
+                totalPistolAmmo += ammo.ammoAmount;
+                break;
+            case AmmoBox.AmmoType.RifleAmmo:
+                totalRifleAmmo += ammo.ammoAmount;
+                break;
+        }
+    }
     private void AddWeaponIntoActiveSlot(GameObject pickedupWeapon)
     {
         DropCurrentWeapon(pickedupWeapon);
@@ -102,6 +116,35 @@ public class WeaponManager : MonoBehaviour
         {
             Weapon newWeapon = activeWeaponSlot.transform.GetChild(0).GetComponent<Weapon>();
             newWeapon.isActiveWeapon = true; 
+        }
+    }
+
+       internal void DecreaseTotalAmmo(int bulletsToDecrease, Weapon.WeaponModel thisWeaponModel)
+    {
+        switch (thisWeaponModel)
+        {
+            case Weapon.WeaponModel.Rifle:
+                totalRifleAmmo = bulletsToDecrease;
+                break;
+
+            case Weapon.WeaponModel.Pistol:
+                totalRifleAmmo = bulletsToDecrease;
+                break;
+        }
+    }
+
+    public  int CheckAmmoLeftFor(Weapon.WeaponModel thisWeaponModel)
+    {
+        switch (thisWeaponModel)
+        {
+            case Weapon.WeaponModel.Rifle:
+                return totalRifleAmmo;
+            
+            case Weapon.WeaponModel.Pistol:
+                return totalPistolAmmo;
+
+            default:
+                return 0;
         }
     }
 }

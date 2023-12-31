@@ -45,7 +45,7 @@ public class Weapon : MonoBehaviour
         Rifle
     }
     
-    public WeaponModel currentWeaponModel;
+    public WeaponModel thisWeaponModel;
     
 
      public enum ShootingMode
@@ -70,12 +70,12 @@ public class Weapon : MonoBehaviour
     {
         if (isActiveWeapon)
         {
-            //GetComponent<Outline>().enabled = false;
+            GetComponent<Outline>().enabled = false;
             
             if (bulletsLeft == 0 && isShooting)
             {
                 //SoundManager.Instance.Pistol_MagEmpty.Play();
-                SoundManager.Instance.PlayEmptySound(currentWeaponModel);
+                SoundManager.Instance.PlayEmptySound(thisWeaponModel);
             }
             if (currentShootingMode == ShootingMode.Auto)
             {
@@ -94,7 +94,7 @@ public class Weapon : MonoBehaviour
                 FireWeapon();
             }
             // Manual Reload
-            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading)
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading && WeaponManager.Instance.CheckAmmoLeftFor(thisWeaponModel) > 0)
             {
                 Reload();
             }
@@ -104,14 +104,11 @@ public class Weapon : MonoBehaviour
             {
                 Reload();
             }
-
-            if (AmmoManager.Instance.ammoDisplay != null)
-            {
-                AmmoManager.Instance.ammoDisplay.text = $"{bulletsLeft / bulletsPerBurst}/{magazineSize / bulletsPerBurst}";
-            }
         }
 
     }
+
+    
 
     private void FireWeapon()
     {
@@ -121,7 +118,7 @@ public class Weapon : MonoBehaviour
         animator.SetTrigger("Recoil");
 
         //SoundManager.Instance.Pistol_ShootingSound.Play();
-        SoundManager.Instance.PlayShootingSound(currentWeaponModel);
+        SoundManager.Instance.PlayShootingSound(thisWeaponModel);
 
         readyToShoot = false;
 
@@ -157,7 +154,7 @@ public class Weapon : MonoBehaviour
 
     private void Reload()
     {
-        SoundManager.Instance.PlayReloadSound(currentWeaponModel);
+        SoundManager.Instance.PlayReloadSound(thisWeaponModel);
 
         animator.SetTrigger("Reload");
 
@@ -167,11 +164,22 @@ public class Weapon : MonoBehaviour
 
     private void ReloadCompleted()
     {
-        bulletsLeft = magazineSize;
+        if(WeaponManager.Instance.CheckAmmoLeftFor(thisWeaponModel) > magazineSize)
+        {
+            bulletsLeft = magazineSize;
+            WeaponManager.Instance.DecreaseTotalAmmo(bulletsLeft, thisWeaponModel);
+        }
+        else
+        {
+            bulletsLeft = WeaponManager.Instance.CheckAmmoLeftFor(thisWeaponModel);
+            WeaponManager.Instance.DecreaseTotalAmmo(bulletsLeft, thisWeaponModel);
+
+        }
         isReloading = false;
 
     }
 
+ 
     private void ResetShot()
     {
         readyToShoot = true;

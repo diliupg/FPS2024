@@ -7,6 +7,7 @@ public class InteractionManager : MonoBehaviour
     public static InteractionManager Instance {get; set;}
 
     public Weapon selectedWeapon = null;
+    public AmmoBox selectedAmmoBox;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class InteractionManager : MonoBehaviour
         {
             GameObject objectHitByRaycast = hit.transform.gameObject;
 
+            //Weapon
             if(objectHitByRaycast.GetComponent<Weapon>() &&
                 objectHitByRaycast.GetComponent<Weapon>().isActiveWeapon == false)
             {
@@ -45,6 +47,26 @@ public class InteractionManager : MonoBehaviour
                 if(selectedWeapon)
                 {
                     selectedWeapon.GetComponent<Outline>().enabled = false;
+                }
+            }
+
+            // Ammo box
+            if(objectHitByRaycast.GetComponent<AmmoBox>())
+            {
+                selectedAmmoBox = objectHitByRaycast.gameObject.GetComponent<AmmoBox>();
+                selectedAmmoBox.GetComponent<Outline>().enabled = true;
+
+                if(Input.GetKeyDown(KeyCode.E))
+                {
+                    WeaponManager.Instance.PickupAmmo(selectedAmmoBox);
+                    Destroy(objectHitByRaycast.gameObject);
+                }
+            }
+            else
+            {
+                if(selectedAmmoBox)
+                {
+                    selectedAmmoBox.GetComponent<Outline>().enabled = false;
                 }
             }
             
