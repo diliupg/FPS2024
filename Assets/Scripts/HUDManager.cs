@@ -8,7 +8,6 @@ public class HUDManager : MonoBehaviour
 {
     public static HUDManager Instance {get; set;}
 
-    
     public Sprite emptySlot;
 
     [Header("Ammo")]
@@ -43,7 +42,7 @@ public class HUDManager : MonoBehaviour
     private void Update()
     {
         Weapon activeWeapon = WeaponManager.Instance.activeWeaponSlot.GetComponentInChildren<Weapon>();
-        Weapon inactiveWeapon = GetUnactiveWeaponSlot().GetComponentInChildren<Weapon>();
+        Weapon unactiveWeapon = GetUnactiveWeaponSlot().GetComponentInChildren<Weapon>();
 
         if(activeWeapon)
         {
@@ -55,9 +54,9 @@ public class HUDManager : MonoBehaviour
 
             activeWeaponUI.sprite = GetWeaponSprite(model);
 
-            if(inactiveWeapon)
+            if(unactiveWeapon)
             {
-                unactiveWeaponUI.sprite = GetWeaponSprite(inactiveWeapon.thisWeaponModel);
+                unactiveWeaponUI.sprite = GetWeaponSprite(unactiveWeapon.thisWeaponModel);
             }
         }
         else
@@ -78,7 +77,7 @@ public class HUDManager : MonoBehaviour
         {
             case Weapon.WeaponModel.Pistol:
             return Instantiate(Resources.Load<GameObject>("PistolIcon")).GetComponent<SpriteRenderer>().sprite;
-
+            
             case Weapon.WeaponModel.Rifle:
             return Instantiate(Resources.Load<GameObject>("RifleIcon")).GetComponent<SpriteRenderer>().sprite;
 
@@ -113,6 +112,5 @@ public class HUDManager : MonoBehaviour
         }
         //this will never be reached but we need to put this cause we need to return something from the main function
         return null;
-
     }
 }
