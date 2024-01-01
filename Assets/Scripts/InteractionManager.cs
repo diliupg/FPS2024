@@ -6,8 +6,8 @@ public class InteractionManager : MonoBehaviour
 {
     public static InteractionManager Instance {get; set;}
 
-    public Weapon selectedWeapon = null;
-    public AmmoBox selectedAmmoBox;
+    public Weapon hoveredWeapon = null;
+    public AmmoBox hoveredAmmoBox = null;
 
     private void Awake()
     {
@@ -34,8 +34,8 @@ public class InteractionManager : MonoBehaviour
             if(objectHitByRaycast.GetComponent<Weapon>() &&
                 objectHitByRaycast.GetComponent<Weapon>().isActiveWeapon == false)
             {
-                selectedWeapon = objectHitByRaycast.gameObject.GetComponent<Weapon>();
-                selectedWeapon.GetComponent<Outline>().enabled = true;
+                hoveredWeapon = objectHitByRaycast.gameObject.GetComponent<Weapon>();
+                hoveredWeapon.GetComponent<Outline>().enabled = true;
 
                 if(Input.GetKeyDown(KeyCode.E))
                 {
@@ -44,29 +44,29 @@ public class InteractionManager : MonoBehaviour
             }
             else
             {
-                if(selectedWeapon)
+                if(hoveredWeapon)
                 {
-                    selectedWeapon.GetComponent<Outline>().enabled = false;
+                    hoveredWeapon.GetComponent<Outline>().enabled = false;
                 }
             }
 
             // Ammo box
             if(objectHitByRaycast.GetComponent<AmmoBox>())
             {
-                selectedAmmoBox = objectHitByRaycast.gameObject.GetComponent<AmmoBox>();
-                selectedAmmoBox.GetComponent<Outline>().enabled = true;
+                hoveredAmmoBox = objectHitByRaycast.gameObject.GetComponent<AmmoBox>();
+                hoveredAmmoBox.GetComponent<Outline>().enabled = true;
 
                 if(Input.GetKeyDown(KeyCode.E))
                 {
-                    WeaponManager.Instance.PickupAmmo(selectedAmmoBox);
+                    WeaponManager.Instance.PickupAmmo(hoveredAmmoBox);
                     Destroy(objectHitByRaycast.gameObject);
                 }
             }
             else
             {
-                if(selectedAmmoBox)
+                if(hoveredAmmoBox)
                 {
-                    selectedAmmoBox.GetComponent<Outline>().enabled = false;
+                    hoveredAmmoBox.GetComponent<Outline>().enabled = false;
                 }
             }
             

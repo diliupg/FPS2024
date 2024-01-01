@@ -42,7 +42,9 @@ public class Weapon : MonoBehaviour
     public enum WeaponModel
     {
         Pistol,
-        Rifle
+        Rifle,
+        Laser,
+        GrenadeLauncher
     }
     
     public WeaponModel thisWeaponModel;
@@ -79,12 +81,13 @@ public class Weapon : MonoBehaviour
             }
             if (currentShootingMode == ShootingMode.Auto)
             {
-                // holding down Left Mouse Button
+                // detects holding down Left Mouse Button
                 isShooting = Input.GetKey(KeyCode.Mouse0);
             }
             else if (currentShootingMode == ShootingMode.Single ||
                     currentShootingMode == ShootingMode.Burst)
             {
+                // detect the downward pressing of the mouse button, which happens once every press
                 isShooting = Input.GetKeyDown(KeyCode.Mouse0);
             }
 
@@ -94,7 +97,8 @@ public class Weapon : MonoBehaviour
                 FireWeapon();
             }
             // Manual Reload
-            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading && WeaponManager.Instance.CheckAmmoLeftFor(thisWeaponModel) > 0)
+            if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !isReloading && 
+                                WeaponManager.Instance.CheckAmmoLeftFor(thisWeaponModel) > 0)
             {
                 Reload();
             }

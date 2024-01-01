@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AmmoBox : MonoBehaviour
 {
-    public int ammoAmount = 200;
+    public int ammoAmount ;
     public AmmoType ammoType;
 
     public enum AmmoType
