@@ -120,7 +120,7 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-       internal void DecreaseTotalAmmo(int bulletsToDecrease, Weapon.WeaponModel thisWeaponModel)
+    internal void DecreaseTotalAmmo(int bulletsToDecrease, Weapon.WeaponModel thisWeaponModel)
     {
         switch (thisWeaponModel)
         {

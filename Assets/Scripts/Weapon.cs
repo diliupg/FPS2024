@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
      // shooting
      public bool isShooting, readyToShoot;
        bool allowReset = true;
-     public float shootingDelay = 2f;
+     public float shootingDelay;
 
      // burst
      [Header("Set this to 1 or more to prevent division by 0")]
@@ -87,7 +87,7 @@ public class Weapon : MonoBehaviour
             else if (currentShootingMode == ShootingMode.Single ||
                     currentShootingMode == ShootingMode.Burst)
             {
-                // detect the downward pressing of the mouse button, which happens once every press
+                // detect the downward pressing of the mouse button or key, which happens once every press
                 isShooting = Input.GetKeyDown(KeyCode.Mouse0);
             }
 
@@ -160,7 +160,7 @@ public class Weapon : MonoBehaviour
     {
         SoundManager.Instance.PlayReloadSound(thisWeaponModel);
 
-        animator.SetTrigger("Reload");
+        animator.SetTrigger("Reload"); // run the reload animation
 
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
@@ -177,13 +177,10 @@ public class Weapon : MonoBehaviour
         {
             bulletsLeft = WeaponManager.Instance.CheckAmmoLeftFor(thisWeaponModel);
             WeaponManager.Instance.DecreaseTotalAmmo(bulletsLeft, thisWeaponModel);
-
         }
         isReloading = false;
-
     }
 
- 
     private void ResetShot()
     {
         readyToShoot = true;
