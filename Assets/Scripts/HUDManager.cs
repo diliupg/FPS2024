@@ -26,6 +26,8 @@ public class HUDManager : MonoBehaviour
     public Image tacticalUI;
     public TextMeshProUGUI tacticalAmountUI;
 
+    public GameObject middleDot;
+    
     [Header("Weapon Sprites")]
     public GameObject pistolWeapon;
     public GameObject rifleWeapon;
