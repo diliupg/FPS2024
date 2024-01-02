@@ -160,7 +160,7 @@ public class Weapon : MonoBehaviour
     {
         SoundManager.Instance.PlayReloadSound(thisWeaponModel);
 
-        animator.SetTrigger("Reload"); // run the reload animation
+        animator.SetTrigger("Reload"); // run the reload animation 
 
         isReloading = true;
         Invoke("ReloadCompleted", reloadTime);
@@ -211,7 +211,6 @@ public class Weapon : MonoBehaviour
 
         // returning the shooting direction and spread
         return direction + new Vector3(x, y, 0);
-
     }
 
     private IEnumerator DestroyBulletAfterTime(GameObject bullet, float delay)

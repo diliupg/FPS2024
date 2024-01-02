@@ -26,6 +26,15 @@ public class HUDManager : MonoBehaviour
     public Image tacticalUI;
     public TextMeshProUGUI tacticalAmountUI;
 
+    [Header("Weapon Sprites")]
+    public GameObject pistolWeapon;
+    public GameObject rifleWeapon;
+    public GameObject pistolAmmo;
+    public GameObject rifleAmmo;
+    private Sprite pistolSprite;
+    private Sprite rifleSprite;
+    private Sprite pistolAmmoSprite;
+    private Sprite rifleSAmmoSprite;
 
     private void Awake()
     {
@@ -37,6 +46,11 @@ public class HUDManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        pistolSprite = pistolWeapon.GetComponent<SpriteRenderer>().sprite;
+        rifleSprite = rifleWeapon.GetComponent<SpriteRenderer>().sprite;
+        pistolAmmoSprite= pistolAmmo.GetComponent<SpriteRenderer>().sprite;
+        rifleSAmmoSprite = rifleAmmo.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void Update()
@@ -76,10 +90,13 @@ public class HUDManager : MonoBehaviour
         switch(model)
         {
             case Weapon.WeaponModel.Pistol:
-            return Instantiate(Resources.Load<GameObject>("PistolIcon")).GetComponent<SpriteRenderer>().sprite;
-            
+            //return (Resources.Load<GameObject>("PistolIcon")).GetComponent<SpriteRenderer>().sprite;
+            return pistolSprite;
+
             case Weapon.WeaponModel.Rifle:
-            return Instantiate(Resources.Load<GameObject>("RifleIcon")).GetComponent<SpriteRenderer>().sprite;
+            //return (Resources.Load<GameObject>("RifleIcon")).GetComponent<SpriteRenderer>().sprite;
+            return rifleSprite;
+
 
             default:
             return null;
@@ -90,11 +107,15 @@ public class HUDManager : MonoBehaviour
     {
         switch(model)
         {
+            
             case Weapon.WeaponModel.Pistol:
-            return Instantiate(Resources.Load<GameObject>("PistolAmmoIcon")).GetComponent<SpriteRenderer>().sprite;
+            //return (Resources.Load<GameObject>("PistolAmmoIcon")).GetComponent<SpriteRenderer>().sprite;
+            return pistolAmmoSprite;
+
 
             case Weapon.WeaponModel.Rifle:
-            return Instantiate(Resources.Load<GameObject>("RifleAmmoIcon")).GetComponent<SpriteRenderer>().sprite;
+            //return (Resources.Load<GameObject>("RifleAmmoIcon")).GetComponent<SpriteRenderer>().sprite;
+            return rifleSAmmoSprite;
 
             default:
             return null;
