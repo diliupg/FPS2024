@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3146411035601470411}
   - component: {fileID: 1792568115098807414}
   - component: {fileID: 8148483165734307062}
-  - component: {fileID: 6699930051901259095}
   - component: {fileID: 3681179741868417112}
+  - component: {fileID: 6699930051901259095}
   - component: {fileID: 2069353102651928082}
   m_Layer: 6
   m_Name: Pistol
@@ -109,6 +109,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04638437, y: 0.1, z: 0.27}
   m_Center: {x: 0, y: 0.04, z: 0.005}
+--- !u!95 &3681179741868417112
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4426881821715398708}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12013d7c5853839479373028bb7ff0e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6699930051901259095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,27 +165,6 @@ MonoBehaviour:
   spawnRotation: {x: 0, y: 0, z: 0}
   thisWeaponModel: 0
   currentShootingMode: 0
---- !u!95 &3681179741868417112
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4426881821715398708}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 12013d7c5853839479373028bb7ff0e9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2069353102651928082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0, g: 0.93098545, b: 1, a: 1}
+  outlineColor: {r: 1, g: 0.740289, b: 0, a: 1}
   outlineWidth: 4
   precomputeOutline: 1
   bakeKeys:
