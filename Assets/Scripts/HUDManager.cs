@@ -79,7 +79,7 @@ public class HUDManager : MonoBehaviour
             unactiveWeaponUI.sprite = emptySlot;
         }
 
-        if(WeaponManager.Instance.grenades <= 0)
+        if(WeaponManager.Instance.lethalsCount <= 0)
         {
             lethalUI.sprite = greySlot;
         }
@@ -129,12 +129,13 @@ public class HUDManager : MonoBehaviour
         return null;
     }
 
-    internal void UpdateThrowables(Throwable.ThrowableType throwable)
+    internal void UpdateThrowablesUI()
     {
-        switch(throwable)
+        lethalAmountUI.text = $"{WeaponManager.Instance.lethalsCount}";
+        
+        switch(WeaponManager.Instance.equippedLethalType)
         {
             case Throwable.ThrowableType.Grenade:
-                lethalAmountUI.text = $"{WeaponManager.Instance.grenades}";
                 lethalUI.sprite = Resources.Load<GameObject>("Grenade").GetComponent<SpriteRenderer>().sprite;
                 break;
         }

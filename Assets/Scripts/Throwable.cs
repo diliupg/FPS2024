@@ -16,6 +16,7 @@ public class Throwable : MonoBehaviour
 
     public enum ThrowableType
     {
+        None,
         Grenade
     }
 
