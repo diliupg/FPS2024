@@ -62,6 +62,9 @@ public class Throwable : MonoBehaviour
         var destroyLater = Instantiate(explosionEffect, transform.position, transform.rotation);
         print("Instantiated");
 
+        // Play sound
+        SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.grenadeSound);
+        
         // Physical Effect
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
         foreach(Collider objectInRange in colliders)

@@ -9,6 +9,7 @@ public class HUDManager : MonoBehaviour
     public static HUDManager Instance {get; set;}
 
     public Sprite emptySlot;
+    public Sprite greySlot;
 
     [Header("Ammo")]
     public TextMeshProUGUI magazineAmmoUI;
@@ -33,11 +34,6 @@ public class HUDManager : MonoBehaviour
     public GameObject rifleWeapon;
     public GameObject pistolAmmo;
     public GameObject rifleAmmo;
-    //private Sprite pistolSprite;
-    //private Sprite rifleSprite;
-    //private Sprite pistolAmmoSprite;
-    //private Sprite rifleSAmmoSprite;
-   //private Sprite GrenadeSprite;
 
     private void Awake()
     {
@@ -50,10 +46,6 @@ public class HUDManager : MonoBehaviour
             Instance = this;
         }
 
-        //pistolSprite = pistolWeapon.GetComponent<SpriteRenderer>().sprite;
-        //rifleSprite = rifleWeapon.GetComponent<SpriteRenderer>().sprite;
-        //pistolAmmoSprite= pistolAmmo.GetComponent<SpriteRenderer>().sprite;
-        //rifleSAmmoSprite = rifleAmmo.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void Update()
@@ -86,6 +78,11 @@ public class HUDManager : MonoBehaviour
             activeWeaponUI.sprite = emptySlot;
             unactiveWeaponUI.sprite = emptySlot;
         }
+
+        if(WeaponManager.Instance.grenades <= 0)
+        {
+            lethalUI.sprite = greySlot;
+        }
     }
 
     private Sprite GetWeaponSprite(Weapon.WeaponModel model)
@@ -94,12 +91,9 @@ public class HUDManager : MonoBehaviour
         {
             case Weapon.WeaponModel.Pistol:
             return Resources.Load<GameObject>("PistolIcon").GetComponent<SpriteRenderer>().sprite;
-            //return pistolSprite;
 
             case Weapon.WeaponModel.Rifle:
             return Resources.Load<GameObject>("RifleIcon").GetComponent<SpriteRenderer>().sprite;
-            //return rifleSprite;
-
 
             default:
             return null;
@@ -113,12 +107,9 @@ public class HUDManager : MonoBehaviour
             
             case Weapon.WeaponModel.Pistol:
             return Resources.Load<GameObject>("PistolAmmoIcon").GetComponent<SpriteRenderer>().sprite;
-            //return pistolAmmoSprite;
-
 
             case Weapon.WeaponModel.Rifle:
             return Resources.Load<GameObject>("RifleAmmoIcon").GetComponent<SpriteRenderer>().sprite;
-            //return rifleSAmmoSprite;
 
             default:
             return null;

@@ -9,10 +9,13 @@ public class SoundManager : MonoBehaviour
 
 
     // Pistol Audio
+    [Header("Audio Playback Channels")]
     public AudioSource ShootingChannel;
+    public AudioSource throwablesChannel;
 
 
     //AudioClips
+    [Header("Audio clips - Gun audio")]
     public AudioClip PistolShoot;
      public AudioClip RifleShoot;
      public AudioClip PistolReload;
@@ -20,6 +23,9 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip PistolEmpty;
      public AudioClip RifleEmpty;
+
+    [Header("Audio clips - Throwables audio")]
+     public AudioClip grenadeSound;
 
     private void Awake()
     {
