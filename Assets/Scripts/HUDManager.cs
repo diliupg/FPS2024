@@ -33,10 +33,11 @@ public class HUDManager : MonoBehaviour
     public GameObject rifleWeapon;
     public GameObject pistolAmmo;
     public GameObject rifleAmmo;
-    private Sprite pistolSprite;
-    private Sprite rifleSprite;
-    private Sprite pistolAmmoSprite;
-    private Sprite rifleSAmmoSprite;
+    //private Sprite pistolSprite;
+    //private Sprite rifleSprite;
+    //private Sprite pistolAmmoSprite;
+    //private Sprite rifleSAmmoSprite;
+   //private Sprite GrenadeSprite;
 
     private void Awake()
     {
@@ -49,10 +50,10 @@ public class HUDManager : MonoBehaviour
             Instance = this;
         }
 
-        pistolSprite = pistolWeapon.GetComponent<SpriteRenderer>().sprite;
-        rifleSprite = rifleWeapon.GetComponent<SpriteRenderer>().sprite;
-        pistolAmmoSprite= pistolAmmo.GetComponent<SpriteRenderer>().sprite;
-        rifleSAmmoSprite = rifleAmmo.GetComponent<SpriteRenderer>().sprite;
+        //pistolSprite = pistolWeapon.GetComponent<SpriteRenderer>().sprite;
+        //rifleSprite = rifleWeapon.GetComponent<SpriteRenderer>().sprite;
+        //pistolAmmoSprite= pistolAmmo.GetComponent<SpriteRenderer>().sprite;
+        //rifleSAmmoSprite = rifleAmmo.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void Update()
@@ -92,12 +93,12 @@ public class HUDManager : MonoBehaviour
         switch(model)
         {
             case Weapon.WeaponModel.Pistol:
-            //return (Resources.Load<GameObject>("PistolIcon")).GetComponent<SpriteRenderer>().sprite;
-            return pistolSprite;
+            return Resources.Load<GameObject>("PistolIcon").GetComponent<SpriteRenderer>().sprite;
+            //return pistolSprite;
 
             case Weapon.WeaponModel.Rifle:
-            //return (Resources.Load<GameObject>("RifleIcon")).GetComponent<SpriteRenderer>().sprite;
-            return rifleSprite;
+            return Resources.Load<GameObject>("RifleIcon").GetComponent<SpriteRenderer>().sprite;
+            //return rifleSprite;
 
 
             default:
@@ -111,13 +112,13 @@ public class HUDManager : MonoBehaviour
         {
             
             case Weapon.WeaponModel.Pistol:
-            //return (Resources.Load<GameObject>("PistolAmmoIcon")).GetComponent<SpriteRenderer>().sprite;
-            return pistolAmmoSprite;
+            return Resources.Load<GameObject>("PistolAmmoIcon").GetComponent<SpriteRenderer>().sprite;
+            //return pistolAmmoSprite;
 
 
             case Weapon.WeaponModel.Rifle:
-            //return (Resources.Load<GameObject>("RifleAmmoIcon")).GetComponent<SpriteRenderer>().sprite;
-            return rifleSAmmoSprite;
+            return Resources.Load<GameObject>("RifleAmmoIcon").GetComponent<SpriteRenderer>().sprite;
+            //return rifleSAmmoSprite;
 
             default:
             return null;
@@ -135,5 +136,16 @@ public class HUDManager : MonoBehaviour
         }
         //this will never be reached but we need to put this cause we need to return something from the main function
         return null;
+    }
+
+    internal void UpdateThrowables(Throwable.ThrowableType throwable)
+    {
+        switch(throwable)
+        {
+            case Throwable.ThrowableType.Grenade:
+                lethalAmountUI.text = $"{WeaponManager.Instance.grenades}";
+                lethalUI.sprite = Resources.Load<GameObject>("Grenade").GetComponent<SpriteRenderer>().sprite;
+                break;
+        }
     }
 }

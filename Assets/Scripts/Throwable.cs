@@ -11,7 +11,7 @@ public class Throwable : MonoBehaviour
 
     float countdown;
 
-    bool hasExploded;
+    public bool hasExploded;
     public bool hasBeenThrown;
 
     public enum ThrowableType
@@ -58,8 +58,9 @@ public class Throwable : MonoBehaviour
     private void GrenadeEffect()
     {
         // Visual Effect
-        GameObject explosionEffect = GlobalReferences.Instance.grenadeExplosionEffect;
-        Instantiate(explosionEffect, transform.position, transform.rotation);
+        GameObject explosionEffect = GlobalReferences.Instance.grenadeExplosionEffect ;
+        var destroyLater = Instantiate(explosionEffect, transform.position, transform.rotation);
+        print("Instantiated");
 
         // Physical Effect
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
@@ -73,5 +74,7 @@ public class Throwable : MonoBehaviour
 
             // also apply damage to enemy over here
         }
+
+        Destroy(destroyLater, 4f);
     }
 }
