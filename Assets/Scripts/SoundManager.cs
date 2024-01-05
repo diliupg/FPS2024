@@ -26,7 +26,7 @@ public class SoundManager : MonoBehaviour
 
     [Header("Audio clips - Throwables audio")]
     public AudioClip grenadeSound;
-    public AudioClip smokegrenadeSound;
+    public AudioClip smokeGrenadeSound;
 
     private void Awake()
     {

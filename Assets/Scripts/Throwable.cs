@@ -54,6 +54,9 @@ public class Throwable : MonoBehaviour
             case ThrowableType.Grenade:
                 GrenadeEffect();
                 break;
+                case ThrowableType.SmokeGrenade:
+                SmokeGrenadeEffect();
+                break;
         }
     }
 
@@ -62,7 +65,6 @@ public class Throwable : MonoBehaviour
         // Visual Effect
         GameObject explosionEffect = GlobalReferences.Instance.grenadeExplosionEffect ;
         var destroyLater = Instantiate(explosionEffect, transform.position, transform.rotation);
-        print("Instantiated");
 
         // Play sound
         SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.grenadeSound);
@@ -82,4 +84,30 @@ public class Throwable : MonoBehaviour
 
         Destroy(destroyLater, 4f);
     }
+
+    private void SmokeGrenadeEffect()
+    {
+        // Visual Effect
+        GameObject smokeEffect = GlobalReferences.Instance.smokeGrenadeExplosionEffect ;
+        var destroyLater = Instantiate(smokeEffect, transform.position, transform.rotation);
+
+        // Play sound
+        SoundManager.Instance.throwablesChannel.PlayOneShot(SoundManager.Instance.smokeGrenadeSound);
+        
+        // Physical Effect
+        Collider[] colliders = Physics.OverlapSphere(transform.position, damageRadius);
+        foreach(Collider objectInRange in colliders)
+        {
+            Rigidbody rb = objectInRange.GetComponent<Rigidbody>();
+            if(rb != null)
+            {
+                // apply blindness and stun effect to enemy
+            }
+
+            // also apply damage to enemy over here
+        }
+
+        Destroy(destroyLater, 4f);
+    }
 }
+ 

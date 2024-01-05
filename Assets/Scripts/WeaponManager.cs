@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour
     public int tacticalsCount = 0;
     public int tacticalsLimit =2;
     public Throwable.ThrowableType equippedTacticalType;
-    public GameObject tacticalGrenadePrefab;
+    public GameObject smokeGrenadePrefab;
 
     private void Awake()
     {
@@ -83,8 +83,6 @@ public class WeaponManager : MonoBehaviour
             {
                 forceMultiplier = forceMultiplierLimit;
             }
-            
-            //(forceMultiplier);
         }
         
         // Throw the grenade
@@ -130,12 +128,12 @@ public class WeaponManager : MonoBehaviour
         switch(throwable.throwableType)
         {
             case Throwable.ThrowableType.Grenade:
-            PickupThrowableAsLethal(Throwable.ThrowableType.Grenade);
-            break;
+                PickupThrowableAsLethal(Throwable.ThrowableType.Grenade);
+                break;
 
             case Throwable.ThrowableType.SmokeGrenade:
-            PickupThrowableAsTactical(Throwable.ThrowableType.SmokeGrenade);
-            break;
+                PickupThrowableAsTactical(Throwable.ThrowableType.SmokeGrenade);
+                break;
         }
     }
 
@@ -165,9 +163,9 @@ public class WeaponManager : MonoBehaviour
 
     private void PickupThrowableAsTactical(Throwable.ThrowableType tactical)
     {
-        if(equippedLethalType == tactical || equippedTacticalType == Throwable.ThrowableType.None)
+        if(equippedTacticalType == tactical || equippedTacticalType == Throwable.ThrowableType.None)
         {
-            equippedLethalType = tactical;
+            equippedTacticalType = tactical;
 
             if(tacticalsCount <tacticalsLimit)
             {
@@ -188,7 +186,7 @@ public class WeaponManager : MonoBehaviour
     }
     private void ThrowLethal()
     {
-        GameObject lethalPrefab = GetThrowablePrefab();
+        GameObject lethalPrefab = GetThrowablePrefab(equippedLethalType);
 
         GameObject throwable = Instantiate(lethalPrefab, throwableSpawn.transform.position, 
                                             Camera.main.transform.rotation);
@@ -209,7 +207,7 @@ public class WeaponManager : MonoBehaviour
 
     private void ThrowTactical()
     {
-        GameObject tacticalPrefab = GetThrowablePrefab();
+        GameObject tacticalPrefab = GetThrowablePrefab(equippedTacticalType);
 
         GameObject throwable = Instantiate(tacticalPrefab, throwableSpawn.transform.position, 
                                             Camera.main.transform.rotation);
@@ -229,12 +227,15 @@ public class WeaponManager : MonoBehaviour
     }
 #endregion
 
-    private GameObject GetThrowablePrefab()
+    private GameObject GetThrowablePrefab(Throwable.ThrowableType throwableType)
     {
-        switch(equippedLethalType)
+        switch(throwableType)
         {
             case Throwable.ThrowableType.Grenade:
                 return grenadePrefab;
+            
+            case Throwable.ThrowableType.SmokeGrenade:
+                return smokeGrenadePrefab;
         }
 
         return new(); // this code will never be reached
