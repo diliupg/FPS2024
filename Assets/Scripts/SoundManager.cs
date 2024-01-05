@@ -5,7 +5,7 @@ using static Weapon;
 
 public class SoundManager : MonoBehaviour
 {
-     public static SoundManager Instance {get; set;}
+    public static SoundManager Instance {get; set;}
 
 
     // Pistol Audio
@@ -17,15 +17,16 @@ public class SoundManager : MonoBehaviour
     //AudioClips
     [Header("Audio clips - Gun audio")]
     public AudioClip PistolShoot;
-     public AudioClip RifleShoot;
-     public AudioClip PistolReload;
-     public AudioClip RifleReload;
+    public AudioClip RifleShoot;
+    public AudioClip PistolReload;
+    public AudioClip RifleReload;
 
     public AudioClip PistolEmpty;
-     public AudioClip RifleEmpty;
+    public AudioClip RifleEmpty;
 
     [Header("Audio clips - Throwables audio")]
-     public AudioClip grenadeSound;
+    public AudioClip grenadeSound;
+    public AudioClip smokegrenadeSound;
 
     private void Awake()
     {
@@ -48,7 +49,7 @@ public class SoundManager : MonoBehaviour
                 break;
             case WeaponModel.Rifle:
                 ShootingChannel.PlayOneShot(RifleShoot);
-                 break;
+                break;
 
         }
     }
@@ -62,7 +63,7 @@ public class SoundManager : MonoBehaviour
                 break;
             case WeaponModel.Rifle:
                 ShootingChannel.PlayOneShot(RifleReload);
-                 break;
+                break;
 
         }
     }
@@ -76,7 +77,7 @@ public class SoundManager : MonoBehaviour
                 break;
             case WeaponModel.Rifle:
                 ShootingChannel.PlayOneShot(RifleEmpty);
-                 break;
+                break;
 
         }
     }
