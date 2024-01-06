@@ -46,6 +46,7 @@ public class Weapon : MonoBehaviour
     public Vector3 spawnRotation;
 
     private bool isADS;
+    
     public enum WeaponModel
     {
         Pistol,
@@ -78,7 +79,6 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        
         if (isActiveWeapon)
         {
             if(Input.GetMouseButtonDown(1))
@@ -129,22 +129,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    // set default layer when weapon is inactive
-    private void SetDefaultLayer()
-    {
-        foreach(Transform child in transform)
-        {
-            child.gameObject.layer = LayerMask.NameToLayer("default");
-        }
-    }
-    // set the weapon layer when weapon is active
-    private void SetWeaponLayer()
-    {
-        foreach(Transform child in transform)
-        {
-            child.gameObject.layer = LayerMask.NameToLayer("WeaponRender");
-        }
-    }
     private void EnterADS()
     {
         animator.SetTrigger("EnterADS");

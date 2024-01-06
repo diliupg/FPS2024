@@ -104,10 +104,7 @@ public class WeaponManager : MonoBehaviour
             forceMultiplier = 0;
         }
     }
-    public void PickupWeapon(GameObject pickedUpWeapon)
-    {
-        AddWeaponIntoActiveSlot(pickedUpWeapon);
-    }
+    
 
     internal void PickupAmmo(AmmoBox ammo)
     {
@@ -241,6 +238,10 @@ public class WeaponManager : MonoBehaviour
         return new(); // this code will never be reached
     }
 
+    public void PickupWeapon(GameObject pickedUpWeapon)
+    {
+        AddWeaponIntoActiveSlot(pickedUpWeapon);
+    }
 
     private void AddWeaponIntoActiveSlot(GameObject pickedupWeapon)
     {
@@ -249,6 +250,9 @@ public class WeaponManager : MonoBehaviour
         pickedupWeapon.transform.SetParent(activeWeaponSlot.transform, false);
 
         Weapon weapon = pickedupWeapon.GetComponent<Weapon>();
+        
+        SetWeaponLayer(weapon.transform);
+        
 
         pickedupWeapon.transform.localPosition = new Vector3(weapon.spawnPosition.x, 
                                                             weapon.spawnPosition.y, 
@@ -266,6 +270,8 @@ public class WeaponManager : MonoBehaviour
         if(activeWeaponSlot.transform.childCount > 0)
         {
             var weaponToDrop = activeWeaponSlot.transform.GetChild(0).gameObject;
+
+            SetDefaultLayer(weaponToDrop.transform);
 
             weaponToDrop.GetComponent<Weapon>().isActiveWeapon = false;
             weaponToDrop.GetComponent<Animator>().enabled = false;
@@ -319,6 +325,23 @@ public class WeaponManager : MonoBehaviour
 
             default:
                 return 0;
+        }
+    }
+
+    // set default layer when weapon is inactive
+    internal void SetDefaultLayer(Transform transform)
+    {
+        foreach(Transform child in transform)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+    }
+    // set the weapon layer when weapon is active
+    internal void SetWeaponLayer(Transform transform)
+    {
+        foreach(Transform child in transform)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("WeaponRender");
         }
     }
 }

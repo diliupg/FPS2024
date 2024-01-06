@@ -107,7 +107,7 @@ public class Throwable : MonoBehaviour
             // also apply damage to enemy over here
         }
 
-        Destroy(destroyLater, 4f);
+        Destroy(destroyLater, 2f);
     }
 }
  
