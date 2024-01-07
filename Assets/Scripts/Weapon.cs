@@ -6,6 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public bool isActiveWeapon;
+    public int weaponDamage;
 
     [Header("Shooting")]
      // shooting
@@ -164,17 +165,18 @@ public class Weapon : MonoBehaviour
         SoundManager.Instance.PlayShootingSound(thisWeaponModel);
 
         readyToShoot = false;
-
+ 
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
 
         // instantiate the bullet
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity);
         
+        bullet.GetComponent<Bullet>().bulletDamage = weaponDamage;
         // point the bullet to face the shooting direction
         bullet.transform.forward = shootingDirection;
 
         // shoot the bullet
-         bullet.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletVelocity, ForceMode.Impulse);
+        bullet.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletVelocity, ForceMode.Impulse);
         
         // Destroy the bullet AFTER SOME TIME
         StartCoroutine(DestroyBulletAfterTime(bullet, bulletLifetime));

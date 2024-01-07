@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public int bulletDamage;
+
     private void OnCollisionEnter(Collision ObjectWeHit)
     {
         if(ObjectWeHit.gameObject.CompareTag("Target"))
@@ -32,7 +34,14 @@ public class Bullet : MonoBehaviour
             ObjectWeHit.gameObject.GetComponent<Bottle>().Shatter();
 
             // we will not destroy the bullet on impact, as it will destroy on life time end
-        }            
+        }
+
+        if(ObjectWeHit.gameObject.CompareTag("Enemy"))
+        {
+            ObjectWeHit.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage);
+
+            Destroy(gameObject);
+        }
     }
 
     void createBulletImpactEffect(Collision ObjectWeHit)
